@@ -68,7 +68,7 @@ exports.getClient = async (req, res) => {
         return res.status(404).json({ message: 'Client not found' });
       }
   
-      res.json(client); // Відправляємо знайденого клієнта
+      res.json(client);
     } catch (error) {
       console.error(error);
       res.status(500).json({ message: 'Server error' });

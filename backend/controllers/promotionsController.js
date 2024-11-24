@@ -9,7 +9,6 @@ const getPromotions = async (req, res) => {
   }
 };
 
-// Створення нової акції
 const createPromotion = async (req, res) => {
   const { title, description, startDate, endDate } = req.body;
   try {
@@ -21,7 +20,6 @@ const createPromotion = async (req, res) => {
   }
 };
 
-// Оновлення акції
 const updatePromotion = async (req, res) => {
   const { id } = req.params;
   const { title, description, startDate, endDate } = req.body;
@@ -34,7 +32,6 @@ const updatePromotion = async (req, res) => {
   }
 };
 
-// Видалення акції
 const deletePromotion = async (req, res) => {
   const { id } = req.params;
   try {

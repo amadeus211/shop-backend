@@ -1,8 +1,8 @@
-const Response = require('../models/Response'); // Виправлено ім'я моделі
+const Response = require('../models/Response'); 
 
 exports.getAllResponses = async (req, res) => {
   try {
-    const responses = await Response.find(); // Виправлено на правильну модель
+    const responses = await Response.find(); 
     res.status(200).json(responses);
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -33,7 +33,7 @@ exports.deleteResponce = async (req, res) => {
   const { id } = req.params;
 
   try {
-    await Response.findByIdAndDelete(id); // Виправлено на правильну модель
+    await Response.findByIdAndDelete(id); 
     res.status(200).json({ message: `Responce with id ${id} deleted` });
   } catch (error) {
     res.status(500).json({ message: error.message });
