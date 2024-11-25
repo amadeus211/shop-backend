@@ -13,7 +13,7 @@ const EditClientPage = () => {
     if (id) {
       const fetchClient = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/api/clients/${id}`);
+          const response = await fetch(`http://localhost:5001/api/clients/${id}`);
           if (!response.ok) {
             throw new Error('Client not found');
           }
@@ -31,7 +31,7 @@ const EditClientPage = () => {
     event.preventDefault();
 
     try {
-      const response = await fetch(`http://localhost:5000/api/clients/${id}`, {
+      const response = await fetch(`http://localhost:5001/api/clients/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

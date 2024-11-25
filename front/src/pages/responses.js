@@ -13,7 +13,7 @@ const ClientsPage = () => {
   useEffect(() => {
     const fetchResponses = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/responses");
+        const response = await fetch("http://localhost:5001/api/responses");
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -41,7 +41,7 @@ const ClientsPage = () => {
   const handleDelete = async (responceId) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/responses/${responceId}`,
+        `http://localhost:5001/api/responses/${responceId}`,
         {
           method: "DELETE",
         }

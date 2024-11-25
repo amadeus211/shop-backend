@@ -13,7 +13,7 @@ const PromotionsPage = () => {
   useEffect(() => {
     const fetchPromotions = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/promotions");
+        const response = await fetch("http://localhost:5001/api/promotions");
 
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -42,7 +42,7 @@ const PromotionsPage = () => {
   const deletePromotion = async (id) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/promotions/${id}`,
+        `http://localhost:5001/api/promotions/${id}`,
         {
           method: "DELETE",
         }

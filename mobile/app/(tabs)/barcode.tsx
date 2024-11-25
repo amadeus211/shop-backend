@@ -2,6 +2,11 @@ import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, StyleSheet, Alert } from 'react-native';
 import { UserContext } from '../../context/UserContext';
 import Barcode from 'react-native-barcode-svg'; 
+import { LogBox } from 'react-native';
+
+
+LogBox.ignoreLogs(['Warning: Barcode: Support for defaultProps']);
+
 
 const BarcodeScreen = () => {
   const { id, phoneNumber, bonus, name } = useContext(UserContext);
@@ -11,7 +16,7 @@ const BarcodeScreen = () => {
   useEffect(() => {
     const fetchClientData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/clients/${id}`);
+        const response = await fetch(`http://192.168.0.104:5001/api/clients/${id}`);
         if (!response.ok) {
           throw new Error('Помилка завантаження даних клієнта');
         }
@@ -57,6 +62,8 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#121212',
+    paddingTop: 60
+
   },
   title: {
     fontSize: 24,

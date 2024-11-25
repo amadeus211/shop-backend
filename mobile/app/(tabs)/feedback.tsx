@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, Alert, Keyboard} from 'react-native';
 import { UserContext } from '../../context/UserContext'; 
 
 const Feedback = () => {
@@ -7,13 +7,14 @@ const Feedback = () => {
   const { phoneNumber } = useContext(UserContext);
 
   const handleSendFeedback = async () => {
+    Keyboard.dismiss();
     if (!description.trim()) {
       Alert.alert('Помилка', 'Введіть текст відгуку.');
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/responses', {
+      const response = await fetch('http://192.168.0.104:5001/api/responses', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#121212', 
+    paddingTop: 60
   },
   title: {
     fontSize: 24,

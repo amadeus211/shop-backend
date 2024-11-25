@@ -20,7 +20,7 @@ const EditPromotionPage = () => {
     const fetchPromotion = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/promotions/${id}`
+          `http://localhost:5001/api/promotions/${id}`
         );
         if (!response.ok) throw new Error("Failed to fetch promotion data.");
         const data = await response.json();
@@ -40,7 +40,7 @@ const EditPromotionPage = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/promotions/${id}`,
+        `http://localhost:5001/api/promotions/${id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

@@ -16,7 +16,7 @@ const NewPromotionModal = ({ onClose, onCreate }) => {
     const newPromotion = { title, description, startDate, endDate };
 
     try {
-      const response = await fetch("http://localhost:5000/api/promotions", {
+      const response = await fetch("http://localhost:5001/api/promotions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newPromotion),
