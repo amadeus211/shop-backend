@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Alert } from 'react-native';
 import { UserContext } from '../../context/UserContext';
 import Barcode from 'react-native-barcode-svg'; 
 import { LogBox } from 'react-native';
+import { BASE_URL } from '../utils/utils';
 
 
 LogBox.ignoreLogs(['Warning: Barcode: Support for defaultProps']);
@@ -16,7 +17,7 @@ const BarcodeScreen = () => {
   useEffect(() => {
     const fetchClientData = async () => {
       try {
-        const response = await fetch(`http://192.168.0.104:5001/api/clients/${id}`);
+        const response = await fetch(`${BASE_URL}/clients/${id}`);
         if (!response.ok) {
           throw new Error('Помилка завантаження даних клієнта');
         }

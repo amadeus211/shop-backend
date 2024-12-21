@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
+import { BASE_URL } from '../utils/utils';
 
 const Promotions = () => {
   const [promotions, setPromotions] = useState([]);
@@ -7,7 +8,7 @@ const Promotions = () => {
 
   const fetchPromotions = async () => {
     try {
-      const response = await fetch('http://192.168.0.104:5001/api/promotions');
+      const response = await fetch(`${BASE_URL}/promotions`);
       const data = await response.json();
       setPromotions(data);
     } catch (error) {

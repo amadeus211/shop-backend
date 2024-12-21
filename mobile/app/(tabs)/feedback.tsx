@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Alert, Keyboard} from 'react-native';
 import { UserContext } from '../../context/UserContext'; 
+import { BASE_URL } from '../utils/utils';
 
 const Feedback = () => {
   const [description, setDescription] = useState('');
@@ -14,7 +15,7 @@ const Feedback = () => {
     }
 
     try {
-      const response = await fetch('http://192.168.0.104:5001/api/responses', {
+      const response = await fetch(`${BASE_URL}/responses`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
