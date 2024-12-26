@@ -67,4 +67,10 @@ ClientSchema.methods.confirmPendingBonusPoints = async function (receiptId, sess
   return await this.save({ session });
 };
 
+ClientSchema.methods.cancelPendingBonusPoints = async function (receiptId, session) {
+  this.pendingPoints = this.pendingPoints.filter(p => p.receiptId.toString() !== receiptId.toString());
+
+  return await this.save({ session });
+};
+
 module.exports = mongoose.model('Client', ClientSchema);

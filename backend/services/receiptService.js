@@ -65,6 +65,40 @@ module.exports = class ReceiptService {
         }
     }
 
+    static async cancelReceipt(id) {
+        const session = await mongoose.startSession();
+        session.startTransaction();
+        
+        try {
+            const receipt = await Receipt.findById(id).session(session);
+            if (!receipt) {
+                throw new APIError(404, 'Receipt not found');
+            }
+            if (receipt.status === 'confirmed') {
+                throw new APIError(400, `Cannot cancel this receipt as it is already confirmed`);
+            }
+
+            const client = await Client.findById(receipt.clientId).session(session);
+            if (!client) {
+                throw new APIError(404, 'Client not found');
+            }
+    
+            receipt.status = 'canceled';
+            await receipt.save({ session });
+
+            await client.cancelPendingBonusPoints(receipt._id, session);
+
+            await session.commitTransaction();
+            session.endSession();
+    
+            return receipt;
+        } catch (error) {
+            await session.abortTransaction();
+            session.endSession();
+            throw error;
+        }
+    }
+
     static async confirmReceipt(id) {
         const session = await mongoose.startSession();
         session.startTransaction();

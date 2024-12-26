@@ -20,10 +20,24 @@ const ReceiptSchema = new mongoose.Schema({
         required: true,
         default: 0,
     },
-    productList: {
-        type: Object,
-        required: true
-    },
+    productList: [{
+        price: {
+            type: Number,
+            required: true,
+        },
+        quantity: {
+            type: Number,
+            required: true,
+        },
+        positionPrice: {
+            type: Number,
+            required: true,
+        },
+        name: {
+            type: String,
+            required: true,
+        },
+    }],
     totalPrice: {
         type: Number,
         required: true,

@@ -41,4 +41,16 @@ const confirmReceipt = async (req, res) => {
   }
 }
 
-module.exports = { getReceipts, createReceipt, confirmReceipt };
+const cancelReceipt = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const receipt = await ReceiptService.cancelReceipt(id);
+    res.status(200).json(receipt);
+  } catch (error) {
+    console.log(error);
+    res.status(error.status ?? 500).json({ message: error.responseMessage ?? 'Server error' });
+  }
+}
+
+module.exports = { getReceipts, createReceipt, confirmReceipt, cancelReceipt };
