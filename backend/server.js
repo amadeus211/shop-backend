@@ -4,6 +4,7 @@ const connectDB = require('./config/database');
 const promotionsRoutes = require('./routes/promotions');
 const clientsRoutes = require('./routes/clients');
 const responsesRoutes = require('./routes/responses');
+const receiptsRoutes = require('./routes/receipts');
 
 const cors = require('cors');
 
@@ -25,6 +26,7 @@ app.use(express.json());
 app.use('/api/promotions', promotionsRoutes);
 app.use('/api/clients', clientsRoutes);
 app.use('/api/responses', responsesRoutes);
+app.use('/api/receipts', receiptsRoutes);
 
 
 const PORT = process.env.PORT || 5001;

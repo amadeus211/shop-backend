@@ -40,6 +40,18 @@ export default () => {
           tabBarLabelStyle: { color: 'white' },  
         }} 
       />
+      <Tabs.Screen 
+        name="receipts"  
+        options={{ 
+          headerShown: false, 
+          tabBarLabel: "Покупки", 
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="list" size={size} color={color} /> 
+          ),
+          tabBarStyle: { backgroundColor: 'black' }, 
+          tabBarLabelStyle: { color: 'white' },  
+        }}
+      />
     </Tabs>
   );
 };
