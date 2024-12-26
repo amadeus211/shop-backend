@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, StyleSheet, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ActivityIndicator, RefreshControl } from 'react-native';
 import { BASE_URL } from '../utils/utils';
 import { UserContext } from '../../context/UserContext';
 
@@ -20,6 +20,7 @@ const Receipts = () => {
   const { id } = useContext(UserContext);
   const [receipts, setReceipts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   const fetchReceipts = async () => {
     try {
@@ -31,6 +32,14 @@ const Receipts = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => {
+      fetchReceipts();
+      setRefreshing(false);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -53,18 +62,28 @@ const Receipts = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.pageTitle}>Покупки</Text>
-      {loading ? (
-        <ActivityIndicator size="large" color="#0000ff" />
-      ) : (
-        <FlatList
-          data={receipts}
-          renderItem={renderReceipt}
-          keyExtractor={(item) => item._id}
-        />
-      )}
-    </View>
+    // <ScrollView
+    //   refreshControl={
+    //     <RefreshControl refreshing={refreshing} 
+    //       onRefresh={onRefresh} />
+    //   }>
+      <View style={styles.container}>
+        <Text style={styles.pageTitle}>Покупки</Text>
+        {loading ? (
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : (
+          <FlatList
+            refreshControl={
+              <RefreshControl refreshing={refreshing} 
+                onRefresh={onRefresh} />
+            }
+            data={receipts}
+            renderItem={renderReceipt}
+            keyExtractor={(item) => item._id}
+          />
+        )}
+      </View>
+    // </ScrollView>
   );
 };
 
